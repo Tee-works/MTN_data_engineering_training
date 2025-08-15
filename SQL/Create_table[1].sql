@@ -1,0 +1,23 @@
+CREATE TABLE call_detail_records (
+    call_id UUID PRIMARY KEY,
+    customer_id VARCHAR(255),
+    phone_number VARCHAR(20),
+    tower_id VARCHAR(255),
+    call_type VARCHAR(10),
+    call_duration_seconds NUMERIC,
+    data_usage_mb NUMERIC,
+    signal_strength_dbm INTEGER,
+    call_timestamp TIMESTAMP,
+    call_success BOOLEAN,
+    revenue_naira NUMERIC(10, 2),
+    network_type VARCHAR(10),
+    roaming BOOLEAN,
+    phone_valid BOOLEAN,
+    signal_valid BOOLEAN,
+    call_duration_minutes NUMERIC,
+    call_month INTEGER,
+    call_hour INTEGER,
+    day_of_week VARCHAR(10),
+    high_value_customers BOOLEAN,
+    signal_quality VARCHAR(10)
+);
