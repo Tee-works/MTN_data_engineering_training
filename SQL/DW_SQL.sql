@@ -98,3 +98,14 @@ INNER JOIN dim.date d ON TO_CHAR(cdr.call_timestamp, 'YYYYMMDD')::INTEGER = d.da
 LEFT JOIN dim.time tm ON EXTRACT(HOUR FROM cdr.call_timestamp)::INTEGER = tm.time_sk
 WHERE cdr.customer_id IS NOT NULL;
 
+# tower dimension table
+CREATE TABLE dim.tower AS
+SELECT DISTINCT
+    ROW_NUMBER() OVER (ORDER BY tower_id) as tower_sk,
+    tower_id,
+    COUNT(*) as total_calls
+FROM call_detail_records
+WHERE tower_id IS NOT NULL
+GROUP BY tower_id;
+
+ALTER TABLE dim.tower ADD PRIMARY KEY (tower_sk);   
